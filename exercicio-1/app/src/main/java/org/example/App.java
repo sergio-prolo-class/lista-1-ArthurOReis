@@ -17,7 +17,7 @@ public class App {
                 System.out.println("É um losango");
                 break;
             default:
-                System.out.println("Forma desconhecida");
+                System.out.println("Forma desconhecida ou não prevista");
                 break;
         }
     }
@@ -25,19 +25,22 @@ public class App {
     public static void get_triangulo(String tamanho_str){
         int tamanho = Integer.parseInt(tamanho_str);
         String triangulo[][] = new String[tamanho][tamanho];
-        int espaco = tamanho - 1; // Variável referente ao tamanho dos vetores (começando no index zero, o que explica o porquê do tamanho decrementado por um)
+        int espaco_restante = tamanho - 1; // Variável referente ao tamanho dos vetores (começando no index zero, o que explica o porquê do tamanho decrementado por um)
 
         /*
-        Nessa iteração, 
-        
+        Nessa iteração com um conjunto de vetores do tamanho de um quadrado perfeito, é verificado
+        em cada linha todos os espaços restantes para cada ponto inserido        
         */
         for (int i = 0; i < tamanho; i++) {
             for (int j = 0; j < tamanho; j++) {
-                triangulo[i][j] = (j - espaco < 0) ? " " : "*";
+                triangulo[i][j] = (j - espaco_restante < 0) ? " " : "*";
             }
-            espaco--;
+            espaco_restante--;
         }
 
+        /*
+        Imprimindo o triângulo
+        */
         for (int i = 0; i < tamanho; i++) {
             for (int j = 0; j < tamanho; j++) {
                 System.out.print(triangulo[i][j]);
