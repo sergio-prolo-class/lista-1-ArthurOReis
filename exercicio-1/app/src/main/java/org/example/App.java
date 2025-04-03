@@ -2,6 +2,10 @@ package org.example;
 
 public class App {
     public static void main(String[] args) {
+        /* 
+        Switch-case de decisão de como agir de acordo com argumento recebido;
+        Caso um argumento inválido (não esperado pelo algoritmo), retornará uma resposta padrão seguido de saída;
+        */
         switch(args[0]){
             case "quadrado":
                 System.out.println("É um quadrado");
@@ -17,12 +21,16 @@ public class App {
                 break;
         }
     }
-    
+
     public static void get_triangulo(String tamanho_str){
         int tamanho = Integer.parseInt(tamanho_str);
         String triangulo[][] = new String[tamanho][tamanho];
-        int espaco = tamanho - 1;
+        int espaco = tamanho - 1; // Variável referente ao tamanho dos vetores (começando no index zero, o que explica o porquê do tamanho decrementado por um)
 
+        /*
+        Nessa iteração, 
+        
+        */
         for (int i = 0; i < tamanho; i++) {
             for (int j = 0; j < tamanho; j++) {
                 triangulo[i][j] = (j - espaco < 0) ? " " : "*";
