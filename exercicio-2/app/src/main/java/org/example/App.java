@@ -36,12 +36,14 @@ public class App {
         }
 
         int faixa_um = get_faixa(args[0]);
-        int faixa_dois = get_faixa(args[1]);
+        int faixa_dois = get_faixa(args[1]);    
         String multiplicador = get_multiplicador(args[2]);
 
         if (faixa_um == -1 || faixa_dois == -1 || multiplicador.isEmpty()) {
             return;
         }
+
+        String resultado = calcula_faixas (faixa_um, faixa_dois, multiplicador);
 
 
     }
@@ -96,9 +98,73 @@ public class App {
                 return "100M";
             case "branco":
                 return "1G";
+            case "ouro":
+                return "0,1";
+            case "prata":
+                return "0,01";
             default:
                 System.out.println("Cor inválida");
                 return null;
         }
+    }
+
+    public static String calcula_faixas(int faixa_um, int faixa_dois, String multiplicador) {
+        String resultado;
+        double faixa = faixa_um + (faixa_dois / 10.0);
+
+        switch (multiplicador) {
+            case "1":
+                faixa *= 1;
+                break;
+            case "10":
+                faixa *= 10;
+                break;
+            case "100":
+                faixa *= 100;
+                break;
+            case "1K":
+                faixa *= 1000;
+                break;
+            case "10K":
+                faixa *= 10000;
+                break;
+            case "100K":
+                faixa *= 100000;
+                break;
+            case "1M":
+                faixa *= 1000000;
+                break;
+            case "10M":
+                faixa *= 10000000;
+                break;
+            case "100M":
+                faixa *= 100000000;
+                break;
+            case "1G":
+                faixa *= 1000000000;
+                break;
+            case "0,1":
+                faixa *= 0.1;
+                break;
+            case "0,01":
+                faixa *= 0.01;
+                break;
+            default:
+                System.out.println("Multiplicador inválido");
+                return null;
+        }
+
+        if (faixa >= 1000000000) {
+            resultado = String.format("%.1f G", faixa / 1000000000);
+        } else if (faixa >= 1000000) {
+            resultado = String.format("%.1f M", faixa / 1000000);
+        } else if (faixa >= 1000) {
+            resultado = String.format("%.1f K", faixa / 1000);
+        } else {
+            resultado = String.format("%.1f", faixa);
+        }
+        resultado += " Ohms";
+
+        return resultado;
     }
 }
