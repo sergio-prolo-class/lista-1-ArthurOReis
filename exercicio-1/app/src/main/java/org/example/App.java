@@ -34,16 +34,16 @@ public class App {
     public static void get_triangulo(String tamanho_str) {
         int tamanho = Integer.parseInt(tamanho_str);
         String triangulo[][] = new String[tamanho][tamanho];
-        int espaco_restante = tamanho - 1; // Variável referente ao tamanho dos vetores (começando no index zero, o que
-                                           // explica o porquê do tamanho decrementado por um)
+        int espaco_restante = tamanho - 1; /* Variável referente ao tamanho dos vetores (começando no index zero, o que
+                                            explica o porquê do tamanho decrementado por um) */
 
         /*
-         * Nessa iteração com um conjunto de vetores do tamanho de um quadrado perfeito,
-         * é verificado
-         * em cada linha todos os espaços restantes para cada ponto inserido
-         * 
-         * i: altura
-         * j: largura
+        Nessa iteração com um conjunto de vetores do tamanho de um quadrado perfeito,
+        é verificado
+        em cada linha todos os espaços restantes para cada ponto inserido
+        
+        i: altura
+        j: largura
          */
         for (int i = 0; i < tamanho; i++) {
             for (int j = 0; j < tamanho; j++) {
@@ -53,8 +53,8 @@ public class App {
         }
 
         /*
-         * Imprimindo o triângulo
-         */
+        Imprimindo o triângulo
+        */
         for (int i = 0; i < tamanho; i++) {
             for (int j = 0; j < tamanho; j++) {
                 System.out.print(triangulo[i][j]);
@@ -87,8 +87,8 @@ public class App {
         }
 
         /*
-         * Imprimindo o retângulo
-         */
+        Imprimindo o retângulo
+        */
         for (int i = 0; i < altura; i++) {
             for (int j = 0; j < largura; j++) {
                 System.out.print(retangulo[i][j]);
