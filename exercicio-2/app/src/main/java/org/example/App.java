@@ -36,15 +36,22 @@ public class App {
         }
 
         int faixa_um = get_faixa(args[0]);
-        int faixa_dois = get_faixa(args[1]);    
+        int faixa_dois = get_faixa(args[1]);
         String multiplicador = get_multiplicador(args[2]);
+        String tolerancia = get_tolerancia(args);
 
         if (faixa_um == -1 || faixa_dois == -1 || multiplicador.isEmpty()) {
             return;
         }
 
-        String resultado = calcula_faixas (faixa_um, faixa_dois, multiplicador);
+        String faixas_calculada = calcula_faixas (faixa_um, faixa_dois, multiplicador);
 
+        
+
+        System.out.print(faixas_calculada);
+        if (!tolerancia.isEmpty()) {
+            System.out.printf("(+- %)");
+        }
 
     }
 
@@ -102,6 +109,36 @@ public class App {
                 return "0,1";
             case "prata":
                 return "0,01";
+            default:
+                System.out.println("Cor inválida");
+                return null;
+        }
+    }
+
+    public static String get_tolerancia(String[] tolerancia){
+        String tolerancia_cor = tolerancia.length > 3 ? tolerancia[3] : "";
+
+        switch (tolerancia_cor) {
+            case "preto":
+                return "(+- 0%)";
+            case "marrom":
+                return "(+- 1%)";
+            case "vermelho":
+                return "(+- 2%)";
+            case "verde":
+                return "(+- 0,5%)";
+            case "azul":
+                return "(+- 0,25%)";
+            case "roxo":
+                return "(+- 0,1%)";
+            case "cinza":
+                return "(+- 0,05%)";
+            case "ouro":
+                return "(+- 5%)";
+            case "prata":
+                return "(+- 10%)";
+            case "":
+                return "(+- 20%)";
             default:
                 System.out.println("Cor inválida");
                 return null;
@@ -167,4 +204,5 @@ public class App {
 
         return resultado;
     }
+
 }
