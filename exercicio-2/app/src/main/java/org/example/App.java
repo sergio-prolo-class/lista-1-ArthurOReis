@@ -31,7 +31,19 @@ public class App {
     // e a quarta faixa (opcional) indica a tolerância da resistência
 
     public static void main(String[] args) {
-        
+        if (args.length < 3) {
+            System.out.println("Insira em um formato para ler as faixas de um resistor, exemplo, 'marrom preto vermelho dourado'");
+        }
+
+        int faixa_um = get_faixa(args[0]);
+        int faixa_dois = get_faixa(args[1]);
+        String multiplicador = get_multiplicador(args[2]);
+
+        if (faixa_um == -1 || faixa_dois == -1 || multiplicador.isEmpty()) {
+            return;
+        }
+
+
     }
 
     public static int get_faixa(String cor) {
@@ -59,6 +71,34 @@ public class App {
             default:
                 System.out.println("Cor inválida");
                 return -1;
+        }
+    }
+
+    public static String get_multiplicador(String cor) {
+        switch (cor) {
+            case "preto":
+                return "1";
+            case "marrom":
+                return "10";
+            case "vermelho":
+                return "100";
+            case "laranja":
+                return "1K";
+            case "amarelo":
+                return "10K";
+            case "verde":
+                return "100K";
+            case "azul":
+                return "1M";
+            case "violeta":
+                return "10M";
+            case "cinza":
+                return "100M";
+            case "branco":
+                return "1G";
+            default:
+                System.out.println("Cor inválida");
+                return null;
         }
     }
 }
