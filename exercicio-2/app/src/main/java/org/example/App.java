@@ -40,18 +40,13 @@ public class App {
         String multiplicador = get_multiplicador(args[2]);
         String tolerancia = get_tolerancia(args);
 
-        if (faixa_um == -1 || faixa_dois == -1 || multiplicador.isEmpty()) {
+        if (faixa_um == -1 || faixa_dois == -1 || multiplicador.isEmpty() || tolerancia.isEmpty()) {
             return;
         }
 
         String faixas_calculada = calcula_faixas (faixa_um, faixa_dois, multiplicador);
 
-        
-
-        System.out.print(faixas_calculada);
-        if (!tolerancia.isEmpty()) {
-            System.out.printf("(+- %)");
-        }
+        System.out.print(faixas_calculada + " " + tolerancia);
 
     }
 
@@ -147,7 +142,7 @@ public class App {
 
     public static String calcula_faixas(int faixa_um, int faixa_dois, String multiplicador) {
         String resultado;
-        double faixa = faixa_um + (faixa_dois / 10.0);
+        double faixa = faixa_um * 10 + faixa_dois;
 
         switch (multiplicador) {
             case "1":
