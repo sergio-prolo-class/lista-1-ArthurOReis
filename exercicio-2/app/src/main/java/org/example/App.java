@@ -15,11 +15,50 @@ o nome das cores das faixas de um resistor e imprima na tela o valor da resistê
 o programa deve informar a forma correta de uso.
 */
 
+/*
+Exemplo de execução:
+
+gradle run --args "amarelo branco verde azul"
+
+Resistência: 4,9 M Ohms (+- 0,25%)
+*/
+
 package org.example;
 
 public class App {
+    // As duas primeiras faixas indicam os dois dígitos iniciais do valor
+    // a terceira faixa indica um multiplicador
+    // e a quarta faixa (opcional) indica a tolerância da resistência
 
     public static void main(String[] args) {
         
+    }
+
+    public static int get_faixa(String cor) {
+        switch (cor) {
+            case "preto":
+                return 0;
+            case "marrom":
+                return 1;
+            case "vermelho":
+                return 2;
+            case "laranja":
+                return 3;
+            case "amarelo":
+                return 4;
+            case "verde":
+                return 5;
+            case "azul":
+                return 6;
+            case "violeta":
+                return 7;
+            case "cinza":
+                return 8;
+            case "branco":
+                return 9;
+            default:
+                System.out.println("Cor inválida");
+                return -1;
+        }
     }
 }
