@@ -1,9 +1,9 @@
 # Lista 1: Ambiente Java, git e Gradle
 ## Engenharia de Telecomunicações - Prof. Sergio Prolo
 ## Programação Orientada a Objetos sergio.prolo@ifsc.edu.br
-### 31/03/2025
 
-Aluno: Arthur Oliveira dos Reis
+#### 31/03/2025
+#### Aluno: Arthur Oliveira dos Reis
 
 - No repositório do GitHub, há uma pasta separada para cada exercício. Dentro de cada, você deve
 criar um projeto Java utilizando o Gradle e configurar seus arquivos para que a tarefa run seja
@@ -22,3 +22,71 @@ sobre git).
 
 - Todas as aplicações desenvolvidas serão avaliadas com base em critérios de legibilidade, clareza e
 organização do código [15 pontos].
+
+---
+
+## Aplicação 1 
+
+```shell
+gradle run --args "triangulo 5"
+
+    *
+   **
+  ***
+ ****
+*****
+```
+
+```shell
+gradle run --args "losango 5"
+
+  *
+ ***
+*****
+ ***
+  *
+```
+
+```shell
+gradle run --args "retangulo 8 5"
+
+********
+*      *
+*      *
+*      *
+********
+```
+
+
+## Aplicação 2
+
+```shell
+gradle run --args "amarelo branco verde azul"
+
+Resistência: 4,9 M Ohms (+- 0,25%)
+```
+
+
+## Aplicação 3
+
+```shell
+gradle run
+C C C . . . . . . .
+. . . . . . . . . .
+. . . . . S S S . .
+. . . . . . . . . .
+. P P P P P . . . .
+. . . . . . . E . .
+. . . . . . . E . .
+. . . . . . . E . .
+. . . . . . . E . .
+. . . N N . . . . .
+```
+
+## Aplicação 4
+
+```shell
+gradle run < tabuleiro.txt
+
+Tabuleiro válido
+```

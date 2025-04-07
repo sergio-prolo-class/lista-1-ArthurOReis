@@ -18,9 +18,9 @@ public class App {
         }
 
         if (get_tamanho_tabuleiro(tabuleiro, i)) {
-            System.out.println("Tabuleiro com tamanho correto.");
+            System.out.println("Tabuleiro válido");
         } else {
-            System.out.println("Tabuleiro com tamanho incorreto.");
+            System.out.println("Tabuleiro inválido");
         }
 
         // System.out.println("Dados armazenados:");
