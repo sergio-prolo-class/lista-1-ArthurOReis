@@ -3,12 +3,26 @@
  */
 package org.example;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
+public class App {
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        String[] dados = new String[10];
+        Scanner scanner = new Scanner(System.in);
+        int i = 0;
+
+        while (scanner.hasNextLine()) {
+            String linha = scanner.nextLine();
+            dados[i] = linha;
+            i++;
+        }
+        
+
+        System.out.println("Dados armazenados:");
+        for (String linha : dados) {
+            System.out.println(linha);
+        }
     }
 }
