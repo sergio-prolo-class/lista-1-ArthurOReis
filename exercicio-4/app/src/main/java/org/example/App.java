@@ -17,6 +17,7 @@ public class App {
             i++;
         }
 
+        /* Nesse trecho, é verificado se o tabuleiro é válido com base em vários critérios, como tamanho, a presença de návios conhecidos e se todos estão presentes no tabuleiro */
         if (get_tamanho_tabuleiro(tabuleiro, i) && get_navios_conhecidos(tabuleiro) && get_todos_navios(tabuleiro)) {
             System.out.println("Tabuleiro válido");
         } else {
@@ -48,9 +49,7 @@ public class App {
             for (int i = 0; i < linha.length(); i++) {
                 char caractere = linha.charAt(i);
 
-                /*
-                Um simples algoritmo na qual verifica se há algum outro caractere diferente do esperado, isso é, os pontos e os símbolos dos barcos
-                */
+                /* Verifica se há caracteres inválidos no tabuleiro (Apenas pontos e símbolos dos barcos, 'P'; 'E'; 'C'; 'S'; 'N', são permitidos) */
                 if (caractere != '.' && caractere != 'P' && caractere != 'E' && caractere != 'C' && caractere != 'S' && caractere != 'N') {
                     barco_conhecidos = false;
                     break;
@@ -68,6 +67,9 @@ public class App {
 
         for (String linha : tabuleiro) {
 
+            /*
+            Uma iteração é feita para cada linha, com o intuito de verificar quais tipos de navios estão presentes
+            */ 
             for (int i = 0; i < linha.length(); i++) {
                 char caractere = linha.charAt(i);
 
@@ -91,7 +93,7 @@ public class App {
         }
 
         for (int i = 0; i < barcos_disponiveis.length; i++) {
-            if (!barcos_disponiveis[i]) { // Caso um dos valores na lista seja 'false', ou seja, caso o barco não tenha sido encontrado, logo o tabuleiro é inválido
+            if (!barcos_disponiveis[i]) { // Caso um dos valores na lista seja 'false', ou seja, caso um dos barcos não tenha sido encontrado, logo o tabuleiro é inválido
                 todos_barcos_presentes = false;
                 break;
             }
