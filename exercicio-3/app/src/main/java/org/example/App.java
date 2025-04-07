@@ -1,4 +1,5 @@
 /*
+
 Batalha naval é um jogo de tabuleiro em que dois jogadores precisam afundar a frota do adversário.
 Cada jogador possui um tabuleiro com dimensões 10×10.
 No início da partida, os jogadores posicionam seus navios na vertical ou horizontal, não sendo permitido a sobreposição de navios.
@@ -20,7 +21,6 @@ Contratorpedeiro - 2 (Tamanho) - N (Símbolo)
 */
 package org.example;
 import java.util.Random;
-
 
 class Barco {
     private String nome;
@@ -55,15 +55,15 @@ class Barco {
         return nome;
     }
 
-    public int getTamanhoBarco() { // Corrigido para retornar int
+    public int getTamanhoBarco() {
         return tamanho;
     }
 
-    public boolean getFoiInserido() { // Corrigido para retornar boolean
+    public boolean getFoiInserido() {
         return foi_inserido;
     }
 
-    public char getSimbolo() { // Corrigido para retornar char
+    public char getSimbolo() {
         return simbolo;
     }
 }
@@ -71,6 +71,13 @@ class Barco {
 public class App {
 
     public static void main(String[] args) {
+
+        /*
+        
+        Inicializando o tabuleiro em forma de arranjos duplos de String
+        
+        */
+
         String[][] tabuleiro = new String[10][10];
 
         for (int i = 0; i < tabuleiro.length; i++) {
@@ -78,6 +85,15 @@ public class App {
                 tabuleiro[i][j] = ".";
             }
         }
+
+        /*
+
+        Para esse exercício, resolvi criar uma classe do tipo Barco, pois na minha cabeça fazia sentido,
+        principalmente pelo fato de que os barcos possuem atributos o suficiente para inserí-los em uma
+        estrutura, dessa forma, utilizando a POO a meu favor para facilitar a renderização de barcos no
+        tabuleiro, na ordem certa
+        
+        */
 
         Barco barcos[] = new Barco[5];
 
@@ -106,6 +122,13 @@ public class App {
         barcos[4].setTamanhoBarco(2);
         barcos[4].setSimbolo('N');
 
+        set_Barcos(barcos, tabuleiro); // Essa função é a responsável por todo o trabalho de inserir e posicionar os barcos
+
+        /*
+        
+        Por fim, é exibido o tabuleiro final, depois de todo o trabalho por baixo dos panos
+        
+        */
         for (int i = 0; i < tabuleiro.length; i++) {
             for (int j = 0; j < tabuleiro.length; j++) {
                 System.out.print(tabuleiro[i][j] + " ");
@@ -114,7 +137,28 @@ public class App {
         }
     }
 
-    public static void set_Barcos(Barcos[] barcos) {
-        
+    public static void set_Barcos(Barco[] barcos, String[][] tabuleiro) {
+        Random rand = new Random();
+
+        for (int i = 0; i < barcos.length; i++) {
+            int linha, coluna, direcao;
+
+            do {
+                linha = rand.nextInt(10);
+                coluna = rand.nextInt(10);
+                direcao = verificando_posicoes(tabuleiro, barcos[i], linha, coluna, rand);
+            } while (direcao == -1);
+
+            inserir_barco(tabuleiro, barcos[i], linha, coluna, direcao);
+        }
     }
+
+    public static int verificando_posicoes(String[][] tabuleiro, Barco barco, int linha, int coluna, Random random) {
+        return 1;
+    }
+
+    public static void inserir_barco(String[][] tabuleiro, Barco barco, int linha, int coluna, int direcao) {
+
+    }
+
 }
