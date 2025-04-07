@@ -154,7 +154,43 @@ public class App {
     }
 
     public static int verificando_posicoes(String[][] tabuleiro, Barco barco, int linha, int coluna, Random random) {
-        return 1;
+        int sentido = random.nextInt(4);
+        boolean regiao_livre = true;
+
+        /*
+        Nessa função, o que está acontecendo é que será gerado um sentido aleatório (Norte, Sul, Leste, Oeste) em forma de inteiro, e será verificado
+        se não há nenhum barco ocupando o espaço. Portanto, se não for o caso, será retornado o valor da direção, que será usada futuramente
+        para inserir o barco; Se o contrário, isso é se o espaço não estiver livre, retornará '-1', que fará com que essa função seja executada novamente.
+        */
+
+        for (int i = 0; i < barco.getTamanhoBarco(); i++) {
+            switch (sentido) {
+                case 0: // Sentido norte
+                    if (linha - i < 0 || !tabuleiro[linha - i][coluna].equals(".")) {
+                        regiao_livre = false;
+                    }
+                    break;
+                case 1: // Sentido sul
+                    if (linha + i >= tabuleiro.length || !tabuleiro[linha + i][coluna].equals(".")) {
+                        regiao_livre = false;
+                    }
+                    break;
+                case 2: // Sentido leste
+                    if (coluna + i >= tabuleiro[0].length || !tabuleiro[linha][coluna + i].equals(".")) {
+                        regiao_livre = false;
+                    }
+                    break;
+                case 3: // Sentido oeste
+                    if (coluna - i < 0 || !tabuleiro[linha][coluna - i].equals(".")) {
+                        regiao_livre = false;
+                    }
+                    break;
+            }
+            if (!regiao_livre) {
+                return -1;
+            }
+        }
+        return sentido;
     }
 
     public static void inserir_barco(String[][] tabuleiro, Barco barco, int linha, int coluna, int direcao) {
