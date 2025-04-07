@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        String[] dados = new String[10];
+        String[] tabuleiro = new String[10];
         Scanner scanner = new Scanner(System.in);
         int i = 0;
 
@@ -21,8 +21,20 @@ public class App {
         
 
         System.out.println("Dados armazenados:");
-        for (String linha : dados) {
+        for (String linha : tabuleiro) {
             System.out.println(linha);
         }
+    }
+
+    public static boolean get_tamanho_tabuleiro(String[] tabuleiro) {
+        
+    }
+
+    public static boolean get_navios(String[] tabuleiro) {
+        
+    }
+
+    public static boolean get_multiplos_navios(String[] tabuleiro) {
+        
     }
 }
