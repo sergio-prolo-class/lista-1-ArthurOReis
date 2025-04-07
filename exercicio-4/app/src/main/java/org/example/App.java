@@ -3,8 +3,6 @@
  */
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -15,26 +13,43 @@ public class App {
 
         while (scanner.hasNextLine()) {
             String linha = scanner.nextLine();
-            dados[i] = linha;
+            tabuleiro[i] = linha;
             i++;
         }
-        
 
-        System.out.println("Dados armazenados:");
-        for (String linha : tabuleiro) {
-            System.out.println(linha);
+        if (get_tamanho_tabuleiro(tabuleiro, i)) {
+            System.out.println("Tabuleiro com tamanho correto.");
+        } else {
+            System.out.println("Tabuleiro com tamanho incorreto.");
         }
+
+        // System.out.println("Dados armazenados:");
+        // for (String linha : tabuleiro) {
+        //     System.out.println(linha);
+        // }
+
+        scanner.close();
     }
 
-    public static boolean get_tamanho_tabuleiro(String[] tabuleiro) {
-        
+    public static boolean get_tamanho_tabuleiro(String[] tabuleiro, int i) {
+        boolean tamanho_vertical_correto = (i == 10);
+        boolean tamanho_horizontal_correto = true;
+
+        for (String linha : tabuleiro) {
+            if (linha == null || linha.length() != 10) {
+                tamanho_horizontal_correto = false;
+                break;
+            }
+        }
+
+        return tamanho_vertical_correto && tamanho_horizontal_correto;
     }
 
-    public static boolean get_navios(String[] tabuleiro) {
+    // public static boolean get_navios(String[] tabuleiro) {
         
-    }
+    // }
 
-    public static boolean get_multiplos_navios(String[] tabuleiro) {
+    // public static boolean get_multiplos_navios(String[] tabuleiro) {
         
-    }
+    // }
 }
