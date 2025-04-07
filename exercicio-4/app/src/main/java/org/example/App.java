@@ -17,7 +17,7 @@ public class App {
             i++;
         }
 
-        if (get_tamanho_tabuleiro(tabuleiro, i)) {
+        if (get_tamanho_tabuleiro(tabuleiro, i) && get_navios_conhecidos(tabuleiro)) {
             System.out.println("Tabuleiro válido");
         } else {
             System.out.println("Tabuleiro inválido");
@@ -45,8 +45,22 @@ public class App {
         return tamanho_vertical_correto && tamanho_horizontal_correto;
     }
 
-    public static boolean get_navios(String[] tabuleiro) {
-        
+    public static boolean get_navios_conhecidos(String[] tabuleiro) {
+        boolean barco_conhecidos = true;
+
+        for (String linha : tabuleiro) {
+
+            for (int i = 0; i < linha.length(); i++) {
+                char caractere = linha.charAt(i);
+
+                if (caractere != '.' && caractere != 'P' && caractere != 'E' && caractere != 'C' && caractere != 'S' && caractere != 'N') {
+                    barco_conhecidos = false;
+                    break;
+                }
+            }
+
+        }
+        return barco_conhecidos;
     }
 
     // public static boolean get_multiplos_navios(String[] tabuleiro) {
