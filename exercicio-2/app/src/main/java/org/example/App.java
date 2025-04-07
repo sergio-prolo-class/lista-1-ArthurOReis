@@ -5,8 +5,8 @@
 /*
 Resistor é um componente eletrônico que transforma energia elétrica em energia térmica, limitando a corrente elétrica em um circuito.
 A resistência de um resistor, medida em Ohms (Ω), é representada por meio de faixas coloridas impressas em seu corpo.
-_As duas primeiras faixas indicam os dois dígitos iniciais do valor_, _a terceira faixa indica um multiplicador_,
-_e a quarta faixa (opcional) indica a tolerância da resistência_.
+As duas primeiras faixas indicam os dois dígitos iniciais do valor, a terceira faixa indica um multiplicador,
+e a quarta faixa (opcional) indica a tolerância da resistência.
 */
 
 /*
@@ -32,8 +32,13 @@ public class App {
 
     public static void main(String[] args) {
         if (args.length < 3) {
-            System.out.println("Insira em um formato para ler as faixas de um resistor, exemplo, 'marrom preto vermelho dourado'");
+            System.out.println("Insira em um formato válido, para ler as faixas de um resistor, exemplo, 'marrom preto vermelho dourado'");
         }
+
+        /*
+        Para cada argumento recebido, será feito uma conversão de suas cores para valores correspondentes, e caso um deles ou mais falharem,
+        o algoritmo irá parar de executar, seguido de uma mensagem de erro.
+        */
 
         int faixa_um = get_faixa(args[0]);
         int faixa_dois = get_faixa(args[1]);
@@ -44,13 +49,23 @@ public class App {
             return;
         }
 
-        String faixas_calculada = calcula_faixas (faixa_um, faixa_dois, multiplicador);
+        String faixas_calculada = calcula_faixas(faixa_um, faixa_dois, multiplicador);
+
+        /*
+        Por fim, após a filtragem pelas cores, será calculado as faixas, transformando o multiplicador em um numero do tipo double, que
+        irá multiplicar as faixas, e convertê-los de volta em símbolo de notação (1000 = 1K, 1.000.000 = 1M...), junto do valor da tolerância,
+        isto é, se ela também fizer parte dos argumentos
+        */
 
         System.out.print(faixas_calculada + " " + tolerancia);
 
     }
 
     public static int get_faixa(String cor) {
+        /*
+        O método converte a cor da faixa em seu valor correspondente de acordo com os atributos de um resistor.
+        Retorna -1 se a cor for inválida.
+        */
         switch (cor) {
             case "preto":
                 return 0;
@@ -79,6 +94,12 @@ public class App {
     }
 
     public static String get_multiplicador(String cor) {
+        /*
+        Similarmente ao método 'get_faixa', nesse escopo também é convertido a cor da faixa em seu valor correspondente
+        em um valor de base 10^(x).
+        E também retorna -1 se a cor for inválida.
+        */
+
         switch (cor) {
             case "preto":
                 return "1";
@@ -111,6 +132,11 @@ public class App {
     }
 
     public static String get_tolerancia(String[] tolerancia){
+        /*
+        Idêntica à outros métodos anteriores, converte-se sua cor em um diferencial correspondente, com a diferença de que
+        caso não houver o argumento da tolerância, ela simplesmente retornará vazia, por ser opcional.
+        E mais uma vez, retornará -1 caso for colocado uma cor não prevista.
+        */
         String tolerancia_cor = tolerancia.length > 3 ? tolerancia[3] : "";
 
         switch (tolerancia_cor) {
@@ -141,6 +167,12 @@ public class App {
     }
 
     public static String calcula_faixas(int faixa_um, int faixa_dois, String multiplicador) {
+        /*
+        O método se resume em calcular o valor da resistência com base nas duas primeiras faixas e no multiplicador;
+        Primeiramente é combinado as duas primeiras faixas em um número inteiro, depois multiplica o valor pelo multiplicador fornecido,
+        e formata o resultado em Ohms, usando notação (K->mil, M->milhão...).
+        */
+
         String resultado;
         double faixa = faixa_um * 10 + faixa_dois;
 
