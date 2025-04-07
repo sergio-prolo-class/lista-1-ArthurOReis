@@ -144,6 +144,11 @@ public class App {
             int linha, coluna, direcao;
 
             do {
+                /*
+                Nesse trecho, é recebido uma posição aleatória dentro do tabuleiro, e em seguida será
+                selecionado uma direção (Norte, Sul, Leste, Oeste) aleatória e verificá-la se está vazia.
+                Se não for o caso, outro ponto será gerado e o algoritmo irá repetir.
+                */
                 linha = rand.nextInt(10);
                 coluna = rand.nextInt(10);
                 direcao = verificando_posicoes(tabuleiro, barcos[i], linha, coluna, rand);
@@ -194,6 +199,36 @@ public class App {
     }
 
     public static void inserir_barco(String[][] tabuleiro, Barco barco, int linha, int coluna, int direcao) {
+
+        /*
+        Após fazer a verificação, será inserido na linha ou coluna o símbolo do barco, obtido através da classe, de acordo com a direção sem
+        nenhuma obstrução.
+        */
+
+        /*
+        Porta-aviões - 5 (Tamanho) - P (Símbolo)
+        Encouraçado - 4 (Tamanho) - E (Símbolo)
+        Cruzador - 3 (Tamanho) - C (Símbolo)
+        Submarino - 3 (Tamanho) - S (Símbolo)
+        Contratorpedeiro - 2 (Tamanho) - N (Símbolo)
+        */
+
+        for (int i = 0; i < barco.getTamanhoBarco(); i++) {
+            switch (direcao) {
+                case 0: // Sentido norte
+                    tabuleiro[linha - i][coluna] = String.valueOf(barco.getSimbolo());
+                    break;
+                case 1: // Sentido sul
+                    tabuleiro[linha + i][coluna] = String.valueOf(barco.getSimbolo());
+                    break;
+                case 2: // Sentido leste
+                    tabuleiro[linha][coluna + i] = String.valueOf(barco.getSimbolo());
+                    break;
+                case 3: // Sentido oeste
+                    tabuleiro[linha][coluna - i] = String.valueOf(barco.getSimbolo());
+                    break;
+            }
+        }
 
     }
 
