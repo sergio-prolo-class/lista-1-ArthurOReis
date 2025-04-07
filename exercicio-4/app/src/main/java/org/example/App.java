@@ -45,9 +45,9 @@ public class App {
         return tamanho_vertical_correto && tamanho_horizontal_correto;
     }
 
-    // public static boolean get_navios(String[] tabuleiro) {
+    public static boolean get_navios(String[] tabuleiro) {
         
-    // }
+    }
 
     // public static boolean get_multiplos_navios(String[] tabuleiro) {
         
