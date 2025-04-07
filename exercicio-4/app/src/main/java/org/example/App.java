@@ -17,16 +17,11 @@ public class App {
             i++;
         }
 
-        if (get_tamanho_tabuleiro(tabuleiro, i) && get_navios_conhecidos(tabuleiro)) {
+        if (get_tamanho_tabuleiro(tabuleiro, i) && get_navios_conhecidos(tabuleiro) && get_todos_navios(tabuleiro)) {
             System.out.println("Tabuleiro válido");
         } else {
             System.out.println("Tabuleiro inválido");
         }
-
-        // System.out.println("Dados armazenados:");
-        // for (String linha : tabuleiro) {
-        //     System.out.println(linha);
-        // }
 
         scanner.close();
     }
@@ -53,6 +48,9 @@ public class App {
             for (int i = 0; i < linha.length(); i++) {
                 char caractere = linha.charAt(i);
 
+                /*
+                Um simples algoritmo na qual verifica se há algum outro caractere diferente do esperado, isso é, os pontos e os símbolos dos barcos
+                */
                 if (caractere != '.' && caractere != 'P' && caractere != 'E' && caractere != 'C' && caractere != 'S' && caractere != 'N') {
                     barco_conhecidos = false;
                     break;
@@ -63,7 +61,42 @@ public class App {
         return barco_conhecidos;
     }
 
-    // public static boolean get_multiplos_navios(String[] tabuleiro) {
-        
-    // }
+    public static boolean get_todos_navios(String[] tabuleiro) {
+        /*  Essa lista representa a presença de todos os barcos no tabuleiro, consecutivamente {Porta-aviões, Encouraçado, Cruzador, Submarino, Contratorpedeiro} */
+        boolean barcos_disponiveis[] = {false, false, false, false, false}; 
+        boolean todos_barcos_presentes = true;
+
+        for (String linha : tabuleiro) {
+
+            for (int i = 0; i < linha.length(); i++) {
+                char caractere = linha.charAt(i);
+
+                if (caractere == 'P') {
+                    barcos_disponiveis[0] = true;
+                }
+                if (caractere == 'E') {
+                    barcos_disponiveis[1] = true;
+                }
+                if (caractere == 'C') {
+                    barcos_disponiveis[2] = true;
+                }
+                if (caractere == 'S') {
+                    barcos_disponiveis[3] = true;
+                }
+                if (caractere == 'N') {
+                    barcos_disponiveis[4] = true;
+                }
+            }
+
+        }
+
+        for (int i = 0; i < barcos_disponiveis.length; i++) {
+            if (!barcos_disponiveis[i]) { // Caso um dos valores na lista seja 'false', ou seja, caso o barco não tenha sido encontrado, logo o tabuleiro é inválido
+                todos_barcos_presentes = false;
+                break;
+            }
+        }
+
+        return todos_barcos_presentes;
+    }
 }
